@@ -1,0 +1,47 @@
+Placement_File: or2.place Placement_ID: SHA256:2a20485858172306ce58ff480caf0cf54ceb06f40da48f8c972fc80218b80ef8
+Array size: 3 x 3 logic blocks.
+
+Routing:
+
+Net 0 (a)
+
+Node:	150	SOURCE (2,1)  Pad: 7  Switch: 0
+Node:	166	  OPIN (2,1)  Pad: 7  Switch: 2
+Node:	248	 CHANY (1,1)  Track: 7  Switch: 1
+Node:	117	  IPIN (1,1)  Pin: 1   clb.I[1] Switch: 0
+Node:	84	  SINK (1,1)  Class: 0  Switch: -1 Net_pin_index: 1
+
+
+Net 1 (b)
+
+Node:	153	SOURCE (2,1)  Pad: 13  Switch: 0
+Node:	169	  OPIN (2,1)  Pad: 13  Switch: 2
+Node:	244	 CHANY (1,1)  Track: 3  Switch: 1
+Node:	120	  IPIN (1,1)  Pin: 13   clb.I[13] Switch: 0
+Node:	84	  SINK (1,1)  Class: 0  Switch: -1 Net_pin_index: 1
+
+
+Net 2 (c)
+
+Node:	73	SOURCE (1,1)  Class: 10  Switch: 0
+Node:	93	  OPIN (1,1)  Pin: 49   clb.O[9] Switch: 2
+Node:	245	 CHANY (1,1)  Track: 4  Switch: 2
+Node:	228	 CHANX (1,1)  Track: 7  Switch: 2
+Node:	232	 CHANY (0,1)  Track: 1  Switch: 2
+Node:	213	 CHANX (1,0)  Track: 2  Switch: 2
+Node:	249	 CHANY (1,1)  Track: 8  Switch: 2
+Node:	222	 CHANX (1,1)  Track: 1  Switch: 2
+Node:	238	 CHANY (0,1)  Track: 7  Switch: 2
+Node:	219	 CHANX (1,0)  Track: 8  Switch: 2
+Node:	243	 CHANY (1,1)  Track: 2  Switch: 2
+Node:	226	 CHANX (1,1)  Track: 5  Switch: 2
+Node:	234	 CHANY (0,1)  Track: 3  Switch: 2
+Node:	215	 CHANX (1,0)  Track: 4  Switch: 2
+Node:	247	 CHANY (1,1)  Track: 6  Switch: 2
+Node:	230	 CHANX (1,1)  Track: 9  Switch: 2
+Node:	240	 CHANY (0,1)  Track: 9  Switch: 2
+Node:	211	 CHANX (1,0)  Track: 0  Switch: 2
+Node:	241	 CHANY (1,1)  Track: 0  Switch: 2
+Node:	224	 CHANX (1,1)  Track: 3  Switch: 1
+Node:	204	  IPIN (1,2)  Pad: 2  Switch: 0
+Node:	188	  SINK (1,2)  Pad: 2  Switch: -1 Net_pin_index: 1

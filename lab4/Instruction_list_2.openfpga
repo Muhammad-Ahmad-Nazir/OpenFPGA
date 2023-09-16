@@ -1,0 +1,43 @@
+vpr /home/ahmad/OpenFPGA_work/lab4/arch/k6_frac_N10_40nm.xml
+ /home/ahmad/OpenFPGA_work/lab4/micro_benchmark/and2/adn2.blif
+ --clock_modeling route
+
+
+read_openfpga_arch -f /home/ahmad/OpenFPGA_work/lab4/arch/k6_frac_N10_40nm_openfpga.xml
+
+
+read_openfpga_simulation_setting -f /home/ahmad/Desktop/Git/OpenFPGA/openfpga_flow/openfpga_simulation_settings/fixed_sim_openfpga.xml
+
+
+link_openfpga_arch --activity_file /home/ahmad/OpenFPGA_work/lab4/arch/k6_frac_N10_40nm.xml
+
+
+check_netlist_naming_conflict --fix --report ./netlist_renaming.xml
+
+lut_truth_table_fixup
+
+build_fabric --compress_routing
+
+write_fabric_hierarchy --file ./fabric_hierarchy.txt
+
+repack --verbose
+
+build_architecture_bitstream --verbose --write_file fabric_independent_bitstream.xml
+
+build_fabric_bitstream --verbose
+
+write_fabric_verilog --file ./SRC --explicit_port_mapping --include_timing --print_user_defined_template --verbose
+
+write_full_testbench --file ./SRC --reference_benchmark_file_path ${REFERENCE_VERILOG_TESTBENCH} --explicit_port_mapping --include_signal_init --bitstream fabric_bitstream.bit 
+
+write_preconfigured_fabric_wrapper --embed_bitstream iverilog --file ./SRC  --explicit_port_mapping
+
+write_preconfigured_testbench --file ./SRC --reference_benchmark_file_path ${REFERENCE_VERILOG_TESTBENCH} --explicit_port_mapping
+
+write_pnr_sdc --file ./SDC
+
+write_sdc_disable_timing_configure_ports --file ./SDC/disable_configure_ports.sdc
+
+write_analysis_sdc --file ./SDC_analysis
+
+exit

@@ -1,0 +1,9 @@
+name,TotalRunTime,average_net_length,clb_blocks,io_blocks,memory_blocks,mult_blocks,packing_time,placement_time,routing_time,total_logic_block_area,total_routing_area,total_routing_time,total_wire_length
+00_memset_MIN_ROUTE_CHAN_WIDTH,3,9.75758,30,229,0,0,0.13,0.00,0.04,1.61682e+06,1.43501e+06,0.04,2254
+01_memset_MIN_ROUTE_CHAN_WIDTH,9,9.29339,21,229,0,0,5.59,0.00,0.08,1.13177e+06,1.43501e+06,0.08,2249
+00_diffeq_paj_convert_MIN_ROUTE_CHAN_WIDTH,8,16.2736,51,258,0,5,0.22,0.00,0.62,4.72859e+06,6.40229e+06,0.62,11538
+01_diffeq_paj_convert_MIN_ROUTE_CHAN_WIDTH,13,16.3104,36,258,0,5,4.03,0.00,0.76,3.92018e+06,6.40229e+06,0.76,11401
+00_diffeq_f_systemC_MIN_ROUTE_CHAN_WIDTH,7,18.3533,35,162,0,5,0.17,0.00,0.35,3.86629e+06,6.40229e+06,0.35,8571
+01_diffeq_f_systemC_MIN_ROUTE_CHAN_WIDTH,10,16.2411,28,162,0,5,2.96,0.00,0.38,3.48903e+06,6.40229e+06,0.38,7341
+00_sha1_MIN_ROUTE_CHAN_WIDTH,18,13.9551,168,74,0,0,0.89,0.00,0.40,9.05419e+06,4.62242e+06,0.4,15239
+01_sha1_MIN_ROUTE_CHAN_WIDTH,24,13.7370,147,74,0,0,8.38,0.00,0.34,7.92242e+06,4.62242e+06,0.34,14575

@@ -1,0 +1,254 @@
+<architecture>
+  
+  <models>
+    <model name="mult">
+      <input_ports>
+        <port name="A" combinational_sink_ports="Y"/>
+        <port name="B" combinational_sink_ports="Y"/>
+      </input_ports>
+      <output_ports>
+        <port name="Y"/>
+      </output_ports>
+    </model>
+  </models>
+  
+  <tiles>
+    <tile name="io">
+      <sub_tile name="io" capacity="4">
+        <equivalent_sites>
+          <site pb_type="io" pin_mapping="direct"/>
+        </equivalent_sites>
+        <input name="outpad" num_pins="1"/>
+        <output name="inpad" num_pins="1"/>
+        <clock name="clock" num_pins="1"/>
+        <fc in_type="frac" in_val="1.0" out_type="frac" out_val="0.25"/>
+        <pinlocations pattern="custom">
+          <loc side="left">io.outpad io.inpad io.clock</loc>
+          <loc side="top">io.outpad io.inpad io.clock</loc>
+          <loc side="right">io.outpad io.inpad io.clock</loc>
+          <loc side="bottom">io.outpad io.inpad io.clock</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+    
+    <tile name="clb">
+      <sub_tile name="clb">
+        <equivalent_sites>
+          <site pb_type="clb" pin_mapping="direct"/>
+        </equivalent_sites>
+        <input name="I" num_pins="10" equivalent="full"/>
+        <output name="O" num_pins="4" equivalent="instance"/>
+        <clock name="clk" num_pins="1"/>
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.25"/>
+        <pinlocations pattern="spread"/>
+      </sub_tile>
+    </tile>
+    
+    <tile name="mult_36" height="5" area="396000">
+      <sub_tile name="mult_36">
+        <equivalent_sites>
+          <site pb_type="mult_36" pin_mapping="direct"/>
+        </equivalent_sites>
+        <input name="a" num_pins="36"/>
+        <input name="b" num_pins="36"/>
+        <output name="out" num_pins="72"/>
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10"/>
+        <!--  Highly recommand to customize pin location when direct connection is used!!! -->
+        <!--pinlocations pattern="spread"/-->
+        <pinlocations pattern="custom">
+          <loc side="left" yoffset="0">mult_36.a[0:2] mult_36.b[0:2] mult_36.out[0:5]</loc>
+          <loc side="left" yoffset="1">mult_36.a[3:5] mult_36.b[3:5] mult_36.out[6:11]</loc>
+          <loc side="left" yoffset="2">mult_36.a[6:8] mult_36.b[6:8] mult_36.out[12:17]</loc>
+          <loc side="left" yoffset="3">mult_36.a[9:11] mult_36.b[9:11] mult_36.out[18:23]</loc>
+          <loc side="left" yoffset="4">mult_36.a[12:14] mult_36.b[12:14] mult_36.out[24:29]</loc>
+          <loc side="top" yoffset="1">mult_36.a[15:17] mult_36.b[15:17] mult_36.out[30:35]</loc>
+          <loc side="right" yoffset="0">mult_36.a[18:20] mult_36.b[18:20] mult_36.out[36:41]</loc>
+          <loc side="right" yoffset="1">mult_36.a[21:23] mult_36.b[21:23] mult_36.out[42:47]</loc>
+          <loc side="right" yoffset="2">mult_36.a[24:26] mult_36.b[24:26] mult_36.out[48:53]</loc>
+          <loc side="right" yoffset="3">mult_36.a[27:29] mult_36.b[27:29] mult_36.out[54:59]</loc>
+          <loc side="right" yoffset="4">mult_36.a[30:32] mult_36.b[30:32] mult_36.out[60:65]</loc>
+          <loc side="bottom">mult_36.a[33:35] mult_36.b[33:35] mult_36.out[66:71]</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+    
+  </tiles>
+  
+  <layout>
+    <fixed_layout name="16x16" width="18" height="18">
+      <!--Perimeter of 'io' blocks with 'EMPTY' blocks at corners-->   
+      <perimeter type="io" priority="100"/>
+      <corners type="EMPTY" priority="101"/>
+      <col type="mult_36" startx="2" starty="1" repeatx="6" priority="20"/>
+      <fill type="clb" priority="10"/>   
+    </fixed_layout>
+  </layout>
+
+  <device>
+    <sizing R_minW_nmos="4220.930176" R_minW_pmos="11207.599609"/>
+    <area grid_logic_tile_area="2229.320068"/>
+    <chan_width_distr>
+      <x distr="uniform" peak="1.000000"/>
+      <y distr="uniform" peak="1.000000"/>
+    </chan_width_distr>
+    <switch_block type="wilton" fs="3"/>
+    <connection_block input_switch_name="ipin_cblock"/>
+  </device>
+  
+  <switchlist>
+    <switch type="mux" name="0" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00"   Tdel="6.244000e-11" mux_trans_size="1.835460" buf_size="10.498600"/>
+    <switch type="mux" name="ipin_cblock" R="1055.232544" Cout="0." Cin="0.000000e+00" Tdel="8.045000e-11" mux_trans_size="0.983352" buf_size="auto"/>
+  </switchlist>
+  
+  <segmentlist>
+    <segment freq="1.000000" length="1" type="unidir" Rmetal="0.000000" Cmetal="0.000000e+00">
+      <mux name="0"/>
+      <sb type="pattern">1 1</sb>
+      <cb type="pattern">1</cb>
+    </segment>
+  </segmentlist>
+  
+  <complexblocklist>
+    <pb_type name="io">
+      <input name="outpad" num_pins="1"/>
+      <output name="inpad" num_pins="1"/>
+      <clock name="clock" num_pins="1"/>
+      <mode name="inpad">
+        <pb_type name="inpad" blif_model=".input" num_pb="1">
+          <output name="inpad" num_pins="1"/>
+        </pb_type>
+        <interconnect>
+          <direct name="inpad" input="inpad.inpad" output="io.inpad">
+            <delay_constant max="9.492000e-11" in_port="inpad.inpad" out_port="io.inpad"/>
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="outpad">
+        <pb_type name="outpad" blif_model=".output" num_pb="1">
+          <input name="outpad" num_pins="1"/>
+        </pb_type>
+        <interconnect>
+          <direct name="outpad" input="io.outpad" output="outpad.outpad">
+          <delay_constant max="2.675000e-11" in_port="io.outpad" out_port="outpad.outpad"/>
+          </direct>
+        </interconnect>
+      </mode>
+      <power method="ignore"/>
+    </pb_type>
+    
+    <pb_type name="clb">
+      <input name="I" num_pins="10" equivalent="full"/>
+      <output name="O" num_pins="4" equivalent="instance"/>
+      <clock name="clk" num_pins="1"/>
+      <pb_type name="fle" num_pb="4">
+        <input name="in" num_pins="4"/>
+        <output name="out" num_pins="1"/>
+        <clock name="clk" num_pins="1"/>
+        <mode name="n1_lut4">
+          <!-- Define 4-LUT mode -->
+          <pb_type name="ble4" num_pb="1">
+            <input name="in" num_pins="4"/>
+            <output name="out" num_pins="1"/>
+            <clock name="clk" num_pins="1"/>
+            <pb_type name="lut4" blif_model=".names" num_pb="1" class="lut">
+              <input name="in" num_pins="4" port_class="lut_in"/>
+              <output name="out" num_pins="1" port_class="lut_out"/>
+              <!-- LUT timing using delay matrix -->
+              <delay_matrix type="max" in_port="lut4.in" out_port="lut4.out">
+                2.253000e-10
+                2.253000e-10
+                2.253000e-10
+                2.253000e-10
+              </delay_matrix>
+            </pb_type>
+            <pb_type name="ff" blif_model=".latch" num_pb="1" class="flipflop">
+              <input name="D" num_pins="1" port_class="D"/>
+              <output name="Q" num_pins="1" port_class="Q"/>
+              <clock name="clk" num_pins="1" port_class="clock"/>
+              <T_setup value="2.160000e-10" port="ff.D" clock="clk"/>
+              <T_clock_to_Q max="1.426000e-10" port="ff.Q" clock="clk"/>
+            </pb_type>
+            <interconnect>
+              <direct name="direct1" input="ble4.in" output="lut4[0:0].in"/>
+              <direct name="direct2" input="lut4.out" output="ff.D">
+                <pack_pattern name="ble6" in_port="lut4.out" out_port="ff.D"/>
+              </direct>
+              <direct name="direct3" input="ble4.clk" output="ff.clk"/>
+              <mux name="mux1" input="ff.Q lut4.out" output="ble4.out">
+              </mux>
+            </interconnect>
+          </pb_type>
+          <interconnect>
+            <direct name="direct1" input="fle.in" output="ble4.in"/>
+            <direct name="direct2" input="ble4.out" output="fle.out[0:0]"/>
+            <direct name="direct3" input="fle.clk" output="ble4.clk"/>
+          </interconnect>
+        </mode>  
+     </pb_type>
+     <interconnect>
+        <complete name="crossbar" input="clb.I fle[3:0].out" output="fle[3:0].in">
+        <delay_constant max="5.735000e-11" in_port="clb.I" out_port="fle[3:0].in"/>
+          <delay_constant max="5.428000e-11" in_port="fle[3:0].out" out_port="fle[3:0].in"/>
+        </complete>
+        <complete name="clks" input="clb.clk" output="fle[3:0].clk">
+        </complete>
+        <direct name="clbouts1" input="fle[3:0].out" output="clb.O"/>
+     </interconnect>
+    </pb_type>
+    
+    <pb_type name="mult_36x36">
+      <input name="A" num_pins="36"/>
+      <input name="B" num_pins="36"/>
+      <output name="OUT" num_pins="72"/>
+      <clock name="clk" num_pins="1"/>
+      <mode name="mult_36x36">
+        <pb_type name="mult_36x36_slice" num_pb="1">
+          <input name="A_cfg" num_pins="36"/>
+          <input name="B_cfg" num_pins="36"/>
+          <input name="OUT_cfg" num_pins="72"/>
+          <clock name="clk" num_pins="1"/>
+          <pb_type name="reg_36x36_A" blif_model=".latch" num_pb="36" class="flipflop">
+            <input name="D" num_pins="1" port_class="D"/>
+            <output name="Q" num_pins="1" port_class="Q"/>
+            <clock name="clk" num_pins="1" port_class="clock"/>
+          </pb_type>
+          <pb_type name="reg_36x36_B" blif_model=".latch" num_pb="36" class="flipflop">
+            <input name="D" num_pins="1" port_class="D"/>
+            <output name="Q" num_pins="1" port_class="Q"/>
+            <clock name="clk" num_pins="1" port_class="clock"/>
+          </pb_type>
+          <pb_type name="reg_36x36_out" blif_model=".latch" num_pb="72" class="flipflop">
+            <input name="D" num_pins="1" port_class="D"/>
+            <output name="Q" num_pins="1" port_class="Q"/>
+            <clock name="clk" num_pins="1" port_class="clock"/>
+          </pb_type>
+          <pb_type name="mult_36x36" blif_model=".subckt mult" num_pb="1">
+            <input name="A" num_pins="36"/>
+            <input name="B" num_pins="36"/>
+            <output name="OUT" num_pins="72"/>
+            <delay_constant max="0.5e-9" in_port="mult_36x36.A" out_port="mult_36x36.Y"/>
+            <delay_constant max="0.5e-9" in_port="mult_36x36.B" out_port="mult_36x36.Y"/>
+          </pb_type>
+          <interconnect>
+            <direct name="L" input="mult_36x36_slice.A_cfg" output="reg_36x36_A[35:0].D"/>
+            <direct name="M" input="mult_36x36_slice.B_cfg" output="reg_36x36_B[35:0].D"/>
+            <mux name="P" input="mult_36x36_slice.A_cfg reg_36x36_A[35:0].Q" output="mult_36x36.A"/>
+            <mux name="Q" input="mult_36x36_slice.B_cfg reg_36x36_B[35:0].Q" output="mult_36x36.B"/>
+            <direct name="N" input="mult_36x36.OUT" output="reg_36x36_out[71:0].D"/>
+            <mux name="R" input="mult_36x36.OUT reg_36x36_out[71:0].Q" output="mult_36x36_slice.OUT_cfg"/>
+            <complete name="mult_36x36_A" input="mult_36x36_slice.clk" output="reg_36x36_A[35:0].clk"/>
+            <complete name="mult_36x36_B" input="mult_36x36_slice.clk" output="reg_36x36_B[35:0].clk"/>
+            <complete name="mult_36x36_Y" input="mult_36x36_slice.clk" output="reg_36x36_out[71:0].clk"/>
+          </interconnect>
+        </pb_type>
+        <interconnect>
+          <direct name="F" input="block_mult.A" output="mult_36x36_slice.A_cfg"/>
+          <direct name="G" input="block_mult.B" output="mult_36x36_slice.A_cfg"/>
+          <direct name="H" input="mult_36x36_slice.OUT_cfg" output="block_mult.OUT"/> 
+          <direct name="I" input="block_mult.clk" output="mult_36x36_slice.clk"/>
+        </interconnect>
+      </mode>
+    </pb_type>
+  </complexblocklist>
+
+</architecture>

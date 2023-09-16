@@ -1,0 +1,42 @@
+* * * * * * * * * * * * * * * * * * * * 
+RunDirectory : /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/run001
+python3 /home/ahmad/Desktop/Git/OpenFPGA/openfpga_flow/scripts/run_fpga_flow.py /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/arch/K4_N4_2x2_AhmadNazir.xml /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/micro_benchmark/and2.v --top_module and2 --run_dir /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/run001/K4_N4_2x2_AhmadNazir/and2/MIN_ROUTE_CHAN_WIDTH --fpga_flow yosys_vpr --openfpga_shell_template /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/example_script.openfpga --openfpga_arch_file /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/arch/k4_N4_40nm_cc_openfpga.xml --openfpga_sim_setting_file /home/ahmad/Desktop/Git/OpenFPGA/openfpga_flow/openfpga_simulation_settings/fixed_sim_openfpga.xml --power --power_tech /home/ahmad/Desktop/Git/OpenFPGA/openfpga_flow/tech/PTM_45nm/45nm.xml --vpr_fpga_verilog --vpr_fpga_verilog_dir /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/run001/K4_N4_2x2_AhmadNazir/and2/MIN_ROUTE_CHAN_WIDTH --vpr_fpga_x2p_rename_illegal_port --end_flow_with_test --flow_config /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/config/task.conf --TOP and2
+* * * * * * * * * * * * * * * * * * * * 
+INFO - Validating command line arguments
+INFO - Run directory : /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/run001/K4_N4_2x2_AhmadNazir/and2/MIN_ROUTE_CHAN_WIDTH
+INFO - Running "yosys_vpr" Flow
+INFO - Extracted lut_size size from arch XML = 4
+INFO - Running Yosys with lut_size = 4
+INFO - Launching Run yosys 
+INFO - Run yosys is written in file yosys_output.log
+INFO - ACE2 output is written in file and2_ace2_output.txt
+INFO - blif_3args output is written in file and2_blif_3args_output.txt
+INFO - Launching Yosys 
+INFO - Yosys is written in file yosys_rewrite.log
+INFO - Running OpenFPGA Shell Engine 
+INFO - Launching OpenFPGA Shell Run 
+INFO - OpenFPGAShell Revision: v8.0.0-7093-g9e53e9a0a Compiled: 2023-03-22T18:43:34
+ERROR - OpenFPGA Shell Run run failed with returncode -6
+ERROR - command /home/ahmad/Desktop/Git/OpenFPGA/build/openfpga/openfpga -batch -f and2_run.openfpga
+ERROR - -->>Error 1: Unable to find a physical mode for a multi-mode pb_type 'io'!
+ERROR - -->>Error 2: Please specify in the OpenFPGA architecture
+ERROR - -->>Error 3: Unable to pair the operating pb_type 'inpad' to its physical pb_type 'iopad'!
+ERROR - -->>Error 4: Unable to pair the operating pb_type 'outpad' to its physical pb_type 'iopad'!
+ERROR - -->>Error 5: Find a pb_type 'outpad' which has not been mapped to any physical pb_type!
+ERROR - -->>Error 6: Please specify in the OpenFPGA architecture
+ERROR - -->>Error 7: Check physical pb_type annotation for pb_types failed with 1 errors!
+ERROR - -->>Error 8: Unable to bind physical pb_type 'iopad' to circuit model 'GPIO'!
+ERROR - -->>Error 9: Found a physical pb_type 'io[inpad].inpad' missing circuit model binding!
+ERROR - -->>Error 10: Found a physical pb_type 'clb[default].fle[n1_lut4].ble4[default].lut4' missing circuit model binding!
+ERROR - -->>Error 11: Found a physical pb_type 'clb[default].fle[n1_lut4].ble4[default].ff' missing circuit model binding!
+ERROR - -->>Error 12: Check physical pb_type annotation for circuit model failed with 3 errors!
+ERROR - -->>Error 13: Unable to bind pb_type 'iopad' to mode_selection bits '1'!
+ERROR - -->>Error 14: Found a physical pb_type 'inpad' missing circuit model binding!
+ERROR - -->>Error 15: Find a pb_type 'outpad' which has not been mapped to any physical pb_type!
+ERROR - -->>Error 16: Please specify in the OpenFPGA architecture
+ERROR - -->>Error 17: Found a physical pb_type 'lut4' missing circuit model binding!
+ERROR - -->>Error 18: Found a physical pb_type 'ff' missing circuit model binding!
+ERROR - -->>Error 19: Check physical pb_type annotation for mode selection bits failed with 4 errors!
+ERROR - Current working directory : /home/ahmad/Desktop/OpenFPGA_Work/Other/Test/run001/K4_N4_2x2_AhmadNazir/and2/MIN_ROUTE_CHAN_WIDTH
+ERROR - Failed to run OpenFPGA Shell Run task
+ERROR - Exiting . . . . . .

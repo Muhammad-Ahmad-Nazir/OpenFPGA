@@ -1,0 +1,9 @@
+Netlist_File: and2.net Netlist_ID: SHA256:bd37a53d04ebedb18168fac1e679bc8b46c0df832022cc0f7baa754cca38e2fb
+Array size: 3 x 3 logic blocks
+
+#block name	x	y	subblk	block number
+#----------	--	--	------	------------
+c		1	1	0	#0
+out:c		1	2	4	#1
+a		1	2	6	#2
+b		1	0	1	#3

@@ -1,0 +1,8 @@
+./vpr /home/ahmad/Desktop/OpenFPGA_Work/lab6/k4_N4_tileable_40nm.xml /home/ahmad/Desktop/OpenFPGA_Work/lab6/2bitand2.blif --route_chan_width 100
+
+./vpr /home/ahmad/Desktop/OpenFPGA_Work/lab6/k4_N4_tileable_40nm.xml /home/ahmad/Desktop/OpenFPGA_Work/lab6/2bitand2.blif --route_chan_width 100 --analysis --disp on
+
+./vpr /home/ahmad/Desktop/OpenFPGA_Work/lab6/k6_N10_tileable_40nm_converted.xml /home/ahmad/Desktop/OpenFPGA_Work/lab6/2bitand2.blif --route_chan_width 100
+
+./vpr /home/ahmad/Desktop/OpenFPGA_Work/lab6/k6_N10_tileable_40nm_converted.xml /home/ahmad/Desktop/OpenFPGA_Work/lab6/2bitand2.blif --route_chan_width 100 --analysis --disp on
+

@@ -1,0 +1,16 @@
+Netlist_File: mac_2.net Netlist_ID: SHA256:480d00abf3c08d95af456bdeb0ea3aab440962648806e7196b969acecf533a1d
+Array size: 3 x 3 logic blocks
+
+#block name	x	y	subblk	block number
+#----------	--	--	------	------------
+out[1]		1	1	0	#0
+out:out[1]	1	0	4	#1
+out:out[2]	1	0	2	#2
+out:out[0]	0	1	0	#3
+out:out[3]	0	1	5	#4
+a[0]		1	0	1	#5
+a[1]		1	2	1	#6
+b[0]		1	0	6	#7
+b[1]		1	2	4	#8
+c[0]		1	2	2	#9
+c[1]		1	2	3	#10

@@ -1,0 +1,101 @@
+<architecture>
+  <!-- 
+       ODIN II specific config begins 
+       Describes the types of user-specified netlist blocks (in blif, this corresponds to 
+       ".model [type_of_block]") that this architecture supports.
+
+       Note: Basic LUTs, I/Os, and flip-flops are not included here as there are 
+       already special structures in blif (.names, .input, .output, and .latch) 
+       that describe them.
+  -->
+  
+  <models>
+  
+    <model name="single_port_ram">
+      <input_ports>
+        <port name="we" clock="clk"/>
+        <port name="addr" clock="clk" combinational_sink_ports="out"/>
+        <port name="data" clock="clk" combinational_sink_ports="out"/>
+        <port name="clk" is_clock="1">
+      </input_ports>
+      <output_ports>
+        <port name="out" clock="clk"/>
+      </output_ports>
+    </model>
+    
+    <model name="adder">
+      <input_ports>
+        <port name="a" combinational_sink_ports="cout sumout"/>
+        <port name="b" combinational_sink_ports="cout sumout"/>
+        <port name="cin" combinational_sink_ports="cout sumout"/>
+      </input_ports>
+      <output_ports>
+        <port name="cout"/>
+        <port name="sumout"/>
+      </output_ports>
+    </model>
+      
+  </models>
+
+  <tiles
+  
+  <layout>
+    
+    <auto_layout aspect_ratio="1.0">
+    
+      <perimeter type="io" priority="10"/>
+      <corners type="EMPTY" priority="100"/>
+      <col type="RAM" startx="2" repeatx="3" starty="1" priority="3"/>
+      <single type="PCIE" x="3" y="0" priority="20"/>
+      <row type="io" statry="5" priority="2"/>
+      <fill type="clb" priority="1"/>
+    
+    </auto_layout>
+    
+  </layout>
+
+  <complexblocklist>
+    <pb_type name="clb">
+      <input name="I" num_pins="22" equivalent="full"/>
+      <output name="O" num_pins="10" equivalent="instance"/>
+      <clock name="clk" equivalent="false"/>
+      
+      <pb_type name="ble" num_pb="10">
+        <input name="in" num_pins="4"/>
+        <output name="out" num_pins="1"/>
+        <clock name="clk"/>
+      
+        <pb_type name="lut_4" blif_model=".names" num_pb="1" class="lut">
+          <input name="in" num_pins="4" port_class="lut_in"/>
+          <output name="out" num_pins="1" port_class="lut_out"/>
+    
+        </pb_type>
+    
+        <pb_type name="ff" blif_model=".latch" num_pb="1" class="flipflop">
+          <input name="D" num_pins="1" port_class="D"/>
+          <output name="Q" num_pins="1" port_class="Q"/>
+          <clock name="clk" port_class="clock"/>
+        </pb_type>
+    
+        <interconnect>
+          <direct input="lut_4.out" output="ff.D"/>
+          <direct input="ble.in" output="lut_4.in"/>
+          <mux input="ff.Q lut_4.out" output="ble.out"/>
+          <direct input="ble.clk" output="ff.clk"/>
+        </interconnect>
+      
+      </pb_type>
+      
+      <interconnect>
+        <complete input="{clb.I ble[9:0].out}" output="ble[9:0].in"/>
+        <complete input="clb.clk" output="ble[9:0].clk"/>
+        <direct input="ble[9:0].out" output="clb.O"/>
+      </interconnect>
+    
+      <fc_in type="frac"> 0.150000</fc_in>
+      <fc_out type="frac"> 0.125000</fc_out>
+      <pinlocations pattern="spread"/>
+    </pb_type>  
+  </complexblocklist>
+
+</architecture>

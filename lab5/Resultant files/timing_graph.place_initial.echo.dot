@@ -1,0 +1,18 @@
+digraph G {
+	node[shape=record]
+	node0[label="{Node(0) (SOURCE) | {DATA_ARRIVAL\nDomain(0) to * [Origin] \ntime: 0} | {DATA_REQUIRED\nDomain(0) to Domain(0) for Node(2)\ntime: -8.1498e-10} | {SLACK\nDomain(0) to Domain(0) for Node(2)\ntime: -8.1498e-10}}"]
+	node1[label="{Node(1) (SOURCE) | {DATA_ARRIVAL\nDomain(0) to * [Origin] \ntime: 0} | {DATA_REQUIRED\nDomain(0) to Domain(0) for Node(3)\ntime: -9.3986e-10} | {SLACK\nDomain(0) to Domain(0) for Node(3)\ntime: -9.3986e-10}}"]
+	node2[label="{Node(2) (IPIN) | {DATA_ARRIVAL\nDomain(0) to * from Node(0)\ntime: 2.9516e-10} | {DATA_REQUIRED\nDomain(0) to Domain(0) for Node(4)\ntime: -5.1982e-10} | {SLACK\nDomain(0) to Domain(0) for Node(4)\ntime: -8.1498e-10}}"]
+	node3[label="{Node(3) (IPIN) | {DATA_ARRIVAL\nDomain(0) to * from Node(1)\ntime: 4.2004e-10} | {DATA_REQUIRED\nDomain(0) to Domain(0) for Node(4)\ntime: -5.1982e-10} | {SLACK\nDomain(0) to Domain(0) for Node(4)\ntime: -9.3986e-10}}"]
+	node4[label="{Node(4) (OPIN) | {DATA_ARRIVAL\nDomain(0) to * from Node(3)\ntime: 6.4534e-10} | {DATA_REQUIRED\nDomain(0) to Domain(0) for Node(5)\ntime: -2.9452e-10} | {SLACK\nDomain(0) to Domain(0) for Node(5)\ntime: -9.3986e-10}}"]
+	node5[label="{Node(5) (SINK) | {DATA_ARRIVAL\nDomain(0) to * from Node(4)\ntime: 9.3986e-10} | {DATA_REQUIRED\nDomain(0) to Domain(0) [Origin] \ntime: 0} | {SLACK\nDomain(0) to Domain(0) [Origin] \ntime: -9.3986e-10}}"]
+	{rank = same; node0; node1; }
+	{rank = same; node2; node3; }
+	{rank = same; node4; }
+	{rank = same; node5; }
+	node0 -> node2 [ label="Edge(0)\n2.9516e-10"];
+	node1 -> node3 [ label="Edge(1)\n4.2004e-10"];
+	node2 -> node4 [ label="Edge(2)\n2.253e-10"];
+	node3 -> node4 [ label="Edge(3)\n2.253e-10"];
+	node4 -> node5 [ label="Edge(4)\n2.9452e-10"];
+}

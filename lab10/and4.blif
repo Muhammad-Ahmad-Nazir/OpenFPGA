@@ -1,0 +1,15 @@
+.model and4
+.inputs a b c d
+.outputs e
+.names $false
+.names $true
+1
+.names $undef
+.names b a $abc$215$new_n6_
+11 1
+.names $abc$215$new_n6_ c $abc$215$new_n7_
+0- 1
+-0 1
+.names d $abc$215$new_n7_ e
+10 1
+.end

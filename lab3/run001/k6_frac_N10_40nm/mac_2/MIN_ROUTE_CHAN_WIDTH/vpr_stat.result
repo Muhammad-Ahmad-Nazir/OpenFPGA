@@ -1,0 +1,12 @@
+[RESULTS]
+clb_blocks = 1
+io_blocks = 10
+total_routing_area = 6606.65
+total_logic_block_area = 53894
+total_wire_length = 58
+packing_time = 0.00
+placement_time = 0.00
+routing_time = 0.01
+average_net_length = 5.80000
+total_routing_time = 0.01
+
